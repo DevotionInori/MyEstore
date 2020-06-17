@@ -37,7 +37,7 @@
         <a href="${pageContext.request.contextPath}/FindCategoryServlet?name=配件">配件</a>
         <span>
           <c:if test="${not empty user}">
-              <a class="user" href="${pageContext.request.contextPath}/FindAllOrderServlet?id=${user.id}" >${user.username}</a>
+              <a class="user" href="${pageContext.request.contextPath}/OrderFindByIdServlet?id=${user.id}" >${user.username}</a>
               <a href="${pageContext.request.contextPath}/LogOutServlet">注销</a>
           </c:if>
           <c:if test="${ empty user}">
@@ -49,6 +49,18 @@
 
 </header>
 
+<div id="carousel-example-generic">
+    <div class="carousel-inner">
+        <div class="item active" id ="item1">
+            <img src="img/iphone_square_large.jpg" alt="..." onclick="phone('手机')">
+            <div class="carousel-caption">
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
 <section class="sec2">
     <h3>手机</h3>
     <div>

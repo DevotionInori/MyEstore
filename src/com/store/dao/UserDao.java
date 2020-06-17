@@ -11,12 +11,12 @@ public class UserDao {
     //1. 注册操作
     public void addUser(User user) throws SQLException {
 
-        String sql = "insert into users values(null,?,?)";
+        String sql = "insert into users values(null,?,?,?,?)";
 
         QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 
         runner.update(sql, user.getUsername(),
-                user.getPassword());
+                user.getPassword(),"user",user.getTelephone());
     }
 
     public User findUserByLogin(String username, String password) throws SQLException {
@@ -27,5 +27,11 @@ public class UserDao {
 
     }
 
+    public User findUserByName(String username) throws SQLException {
+        String sql = "select * from users where username=?";
+        QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+        return runner.query(sql, new BeanHandler<User>(User.class), username);
+
+    }
 
 }

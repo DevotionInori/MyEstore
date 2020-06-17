@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>快速购买</title>
+    <title>我的订单</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <style type="text/css">
@@ -19,7 +19,7 @@
 
         section.order .order-content ul{
             width: 1200px;
-            height: 150px;
+            height: 100px;
             background: #eee;
             border-top: #686868 1px dashed;
         }
@@ -29,7 +29,7 @@
 
         section.order .order-content ul li{
             float: left;
-            height: 150px;
+            height: 100px;
         }
 
         section.order .order-content ul li:first-child{
@@ -48,9 +48,40 @@
         }
 
         section.order .order-content ul li:nth-child(4){
-            width: 150px;
-            padding: 25px 150px;
+            width: 300px;
+            padding: 25px;
         }
+
+
+        section.order .order-content ul li:nth-child(5){
+            width: 100px;
+            padding: 25px ;
+        }
+
+
+        section.order .title ul li:first-child{
+            width: 500px;
+        }
+
+        section.order .title ul li:nth-child(2){
+            width: 150px;
+        }
+
+        section.order .title ul li:nth-child(3){
+            width: 150px;
+        }
+
+        section.order .title ul li:nth-child(4){
+            width: 300px;
+        }
+
+        section.order .title ul li:nth-child(5){
+            width: 100px;
+            border-right: #8ca2f8 1px solid;
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -65,7 +96,7 @@
         <a href="/devotion/FindCategoryServlet?name=配件">配件</a>
         <span>
             <c:if test="${not empty user }">
-                <a class="user" href="${pageContext.request.contextPath}/FindAllOrderServlet?id=${user.id}" >${user.username}</a>
+                <a class="user" href="${pageContext.request.contextPath}/OrderFindByIdServlet?id=${user.id}" >${user.username}</a>
                 <a href="${pageContext.request.contextPath}/LogOutServlet">注销</a>
             </c:if>
 			<c:if test="${ empty user }">
@@ -84,6 +115,7 @@
             <li>价格</li>
             <li>地址</li>
             <li>购买时间</li>
+            <li>发货状态</li>
         </ul>
         </ul>
     </div>
@@ -91,13 +123,28 @@
 
     <ul class="order-content">
 
-        <c:forEach items="${orders}" var="o" varStatus="vs" begin="0" end="4" step="1">
-            <ul>
-                <li><div style="width: 500px">${o.description}</div></li>
-                <li><span class="price">${o.money}</span></li>
-                <li><span class="order-count">${o.receiverinfo}</span></li>
-                <li>${o.ordertime}</li>
-            </ul>
+        <c:forEach items="${orders}" var="o" varStatus="vs">
+                <ul>
+                    <li><div style="width: 500px">${o.description}</div></li>
+                    <li><span class="price">${o.money}</span></li>
+                    <li><span class="order-count">${o.receiverinfo}</span></li>
+                    <li>${o.ordertime}</li>
+                    <li>
+                        <c:if test="${o.shippingState==0}">
+                            未发货
+                        </c:if>
+                        <c:if test="${o.shippingState==1}">
+                            已发货
+                        </c:if>
+                    </li>
+
+                </ul>
+            <c:if test="${o.shippingState==0}">
+                <a href="${pageContext.request.contextPath}/CancelOrderServlet?id=${o.id}">
+                    <input type="submit" value="取消订单" style="background-color: red;color: white;border-radius: 5px;">
+                </a>
+            </c:if>
+
         </c:forEach>
 
     </ul>

@@ -16,39 +16,4 @@ public class DataSourceUtils {
         return dataSource;
     }
 
-    // 获取绑定到ThreadLocal中的Connection。
-    public static Connection getConnectionByTransaction() throws SQLException {
-        Connection con = tl.get();
-        if (con == null) {
-            con = dataSource.getConnection();
-            tl.set(con);
-        }
-
-        return con;
-    }
-
-    // 开启事务
-    public static void startTransaction(Connection con) throws SQLException {
-        if (con != null)
-            con.setAutoCommit(false);
-    }
-
-    // 事务回滚
-    public static void rollback(Connection con) throws SQLException {
-        if (con != null)
-            con.rollback();
-    }
-
-    public static void closeConnection(Connection con) throws SQLException {
-        if (con != null) {
-            con.commit();// 事务提交
-            con.close();
-            tl.remove();
-
-        }
-    }
-
-    public static Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 }

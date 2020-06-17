@@ -53,10 +53,11 @@ CREATE TABLE `orders` (
   `description` varchar(255) DEFAULT NULL,
   `ordertime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int DEFAULT NULL,
+  `ShippingState` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +66,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (42,899,'Nanjing','iPhone 5s 16G 联通4G/移动4G','2020-06-16 03:03:37',3),(43,899,'NanjingJiangsu','iPhone 5s 16G 联通4G/移动4G','2020-06-16 03:09:31',3),(44,899,'hhhhhhh','iPhone 5s 16G 联通4G/移动4G','2020-06-16 03:09:42',3),(45,1149,'江苏省南京市栖霞区文苑路9号南京邮电大学','iPad mini 2 16G 国行WIFI版','2020-06-16 11:18:33',4);
+INSERT INTO `orders` VALUES (46,1099,'JiangSu','Galaxy Note 4 16G 移动4G','2020-06-17 11:36:25',3,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,8 +111,10 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(40) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
+  `type` varchar(10) DEFAULT NULL,
+  `telephone` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +123,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'admin','123'),(3,'devotion','mysunshine'),(4,'B17041530','123456');
+INSERT INTO `users` VALUES (2,'admin','123','admin',NULL),(3,'devotion','mysunshine','user',NULL),(4,'B17041530','123456','user',NULL),(5,'Mysql','123','user','13685183548');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -133,4 +136,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-16 19:57:42
+-- Dump completed on 2020-06-17 19:44:41

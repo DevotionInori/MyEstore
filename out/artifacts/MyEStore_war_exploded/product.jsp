@@ -25,8 +25,8 @@
         <a href="${pageContext.request.contextPath}/FindCategoryServlet?name=平板">平板</a>
         <a href="${pageContext.request.contextPath}/FindCategoryServlet?name=笔记本">笔记本</a>
         <a href="${pageContext.request.contextPath}/FindCategoryServlet?name=配件">配件</a>
-        span><c:if test="${not empty user }">
-            <a class="user" href="${pageContext.request.contextPath}/FindAllOrderServlet?id=${user.id}" >${user.username}</a>
+        <span><c:if test="${not empty user }">
+        <a class="user" href="${pageContext.request.contextPath}/OrderFindByIdServlet?id=${user.id}" >${user.username}</a>
             <a href="${pageContext.request.contextPath}/LogOutServlet">注销</a>
         </c:if>
 			<c:if test="${ empty user }">

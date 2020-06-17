@@ -29,15 +29,20 @@ public class LoginServlet extends HttpServlet {
         User user=new User();
         user.setUsername(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
-        if(v.equals("登录"))
+        if(v.equals("Login"))
         {
 
 
             try {
                 if(dao.findUserByLogin(user.getUsername(),user.getPassword())!=null)
                 {
-                    PrintWriter out = response.getWriter();
                     user = dao.findUserByLogin(user.getUsername(),user.getPassword());
+                    if(user.getType().equals("admin"))
+                    {
+                        response.sendRedirect(request.getContextPath()+"/OrderFindAllServlet");
+                        return;
+                    }
+                    PrintWriter out = response.getWriter();
                     request.getSession().setAttribute("user",user);
                     String a = URLEncoder.encode("登录成功", "UTF-8");
                     out.print("<script language='javascript'>alert(decodeURIComponent('"+a+"'));window.location.href='index.jsp'</script>");
@@ -53,6 +58,14 @@ public class LoginServlet extends HttpServlet {
         }else{
             try {
                 if(request.getParameter("passwordCheck").equals(user.getPassword())) {
+                    user.setTelephone(request.getParameter("tel"));
+                    if(dao.findUserByName(user.getUsername())!=null)
+                    {
+                        PrintWriter out = response.getWriter();
+                        String a = URLEncoder.encode("账号已存在", "UTF-8");
+                        out.print("<script language='javascript'>alert(decodeURIComponent('"+a+"'));window.location.href='login.jsp'</script>");
+                        return;
+                    }
                     dao.addUser(user);
                     PrintWriter out = response.getWriter();
                     String a = URLEncoder.encode("注册成功", "UTF-8");

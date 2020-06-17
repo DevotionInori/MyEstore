@@ -96,14 +96,14 @@
             document.getElementById('register').className='loginSwitch';
             document.getElementById('registerInput').style='display:none';
             document.getElementById('ib').style='height:105px;';
-            document.getElementById('sbip').value='登录';
+            document.getElementById('sbip').value='Login';
             document.getElementById('sbip').className='lg'">登录</a>
                 <a  href="#" id="register"  class="loginSwitch"  onclick="document.getElementById('slider').style='margin-left:4.7em';
                 this.className='loginSwitch-active';
                 document.getElementById('login').className='loginSwitch';
                 document.getElementById('registerInput').style='display:block';
-                document.getElementById('ib').style='height:160px;';
-                document.getElementById('sbip').value='注册';
+                document.getElementById('ib').style='height:210px;';
+                document.getElementById('sbip').value='Register';
                 document.getElementById('sbip').className='rg'">注册</a>
                 <span id="slider"  class="slider-left" style="left: 0"></span>
 
@@ -114,11 +114,16 @@
                     <input class="ipui" type="text" name="username" placeholder="用户名">
                     <span style="width: 100%;height: 3px;background-color: #9d9d9d;display: inline-block;margin-top: 15px"></span>
                     <input class="ipui" type="password" name="password" placeholder="密码">
-                    <span style="width: 100%;height: 3px;background-color: #9d9d9d;display: inline-block;margin-top: 15px"></span>
-                    <input class="ipui" type="password" name="passwordCheck" placeholder="确认密码" id="registerInput" style="display: none">
+                    <div id="registerInput"  style="display: none">
+                        <span style="width: 100%;height: 3px;background-color: #9d9d9d;display: inline-block;margin-top: 15px"></span>
+                        <input class="ipui" type="password" name="passwordCheck" placeholder="确认密码">
+                        <span style="width: 100%;height: 3px;background-color: #9d9d9d;display: inline-block;margin-top: 15px"></span>
+                        <input class="ipui" type="text" oninput = "value=value.replace(/[^\d]/g,'')" maxlength="11" name="tel" placeholder="手机号">
+                    </div>
+
                 </div>
 
-                <input type="submit" id="sbip" name="sb" style="width: 80%;border: none;border-radius: 5px;margin-top: 20px;height: 40px" value="登录">
+                <input type="submit" id="sbip" name="sb" style="width: 80%;border: none;border-radius: 5px;margin-top: 20px;height: 40px;background: #8097ea;" value="Login">
             </form>
 
 
