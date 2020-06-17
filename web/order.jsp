@@ -43,12 +43,12 @@
         }
 
         section.order .order-content ul li:nth-child(3){
-            width: 150px;
+            width: 300px;
             padding: 25px;
         }
 
         section.order .order-content ul li:nth-child(4){
-            width: 300px;
+            width: 150px;
             padding: 25px;
         }
 
@@ -68,11 +68,11 @@
         }
 
         section.order .title ul li:nth-child(3){
-            width: 150px;
+            width: 300px;
         }
 
         section.order .title ul li:nth-child(4){
-            width: 300px;
+            width: 150px;
         }
 
         section.order .title ul li:nth-child(5){

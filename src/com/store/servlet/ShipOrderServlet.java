@@ -25,7 +25,7 @@ public class ShipOrderServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             dao.shipOrder(id);
             String a = URLEncoder.encode("发货成功", "UTF-8");
-            out.print("<script language='javascript'>alert(decodeURIComponent('"+a+"'));window.location.href='${pageContext.request.contextPath}/OrderFindAllServlet'</script>");
+            out.print("<script language='javascript'>alert(decodeURIComponent('"+a+"'));window.location.href='devotion/OrderFindAllServlet'</script>");
         } catch (SQLException e) {
             e.printStackTrace();
         }
